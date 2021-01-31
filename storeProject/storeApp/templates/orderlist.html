@@ -1,0 +1,22 @@
+{%extends 'navbar.html'%} {%block main%} {%csrf_token%}
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">totalBill</th>
+        <th scope="col">Status</th>
+        <th scope="col">OrderDate</th>
+      </tr>
+    </thead>
+    <tbody>
+        {%for i in orlist %}
+      <tr>
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.total_bill}}</td>
+        <td>{{i.order_status}}</td>
+        <td>{{i.order_date}}</td>
+      </tr>   
+      {%endfor%}   
+    </tbody>
+  </table>
+{%endblock%}

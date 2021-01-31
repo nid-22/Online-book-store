@@ -1,0 +1,31 @@
+.cd-cart__trigger
+{
+  position: fixed;
+  bottom: 20px;
+  right: 5%; 
+  
+  color: black;
+  border-radius: 10px;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.badge {
+    padding-left: 9px;
+    padding-right: 9px;    
+    border-radius: 9px;
+  }
+  
+  
+  .cd-cart__count{
+    position: fixed;
+    bottom:55px;
+    right: 4%; 
+    font-size: 20px;    
+    padding: 0 6px;
+    vertical-align: top;
+}
+
+.cd-cart__count span{
+    font-size: 20px;
+}

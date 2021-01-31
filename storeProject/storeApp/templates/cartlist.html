@@ -1,0 +1,82 @@
+{%extends 'navbar.html'%}
+{% block css%}
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    {% endblock %}
+
+{%block main%}
+<form method="POST">
+    {%csrf_token%}    
+    <!-- ------------------cart----start------------- -->
+    <div class="basket">
+        
+        <div class="basket-labels">
+          <ul>            
+            <li class="item item-heading">Item</li>
+            <li class="price">Price</li>
+            <li class="quantity">Quantity</li>
+            <li class="subtotal">Subtotal</li>
+          </ul>
+        </div>
+        {%for i in crlist%}
+            <div class="basket-product">
+            <div class="item">
+                <div class="product-image">
+                <img src="{{i.img.url}} alt='img' class='product-frame'">
+                </div>
+                <div class="product-details">
+                <h4><strong><span class="item-quantity"></span>  {{i.book.name}}</strong> </h4>
+                <p><strong>product book</strong></p>
+                <p>Product Code - {{i.id}}</p>
+                </div>
+            </div>
+            <div class="price">{{i.book.price}}</div>
+            <div class="quantity">
+                <input type="number" name="cart_items" value="1" min="1" class="quantity-field">
+            </div>
+            <div class="subtotal">{{i.book.price}}</div>
+            <div class="remove">
+                <button>Remove</button>
+            </div>
+            </div>
+        {% endfor %}
+        
+        
+        
+      </div>
+      <aside>
+        <div class="summary">
+          <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
+          <div class="summary-subtotal">
+            <div class="subtotal-title">Subtotal</div>
+            <div class="subtotal-value final-value" id="basket-subtotal"><input type="hidden" name="bill" value="{{totalBill}}">{{totalBill}}</div>
+            <div class="summary-promo hide">
+              <div class="promo-title">Promotion</div>
+              <div class="promo-value final-value" id="basket-promo"></div>
+            </div>
+          </div>
+          <div class="summary-delivery">
+            <select name="delivery-collection" class="summary-delivery-selection">
+                <option value="0" selected="selected">Select Collection or Delivery</option>
+               <option value="collection">Collection</option>
+               <option value="first-class">Delivery by Fedex</option>
+               <option value="second-class">Delivery by Booked.in</option>
+            </select>
+          </div>
+          <div class="summary-total">
+            <div class="total-title">Total</div>
+            <div class="total-value final-value" id="basket-total"><input type="hidden" name="bill" value="{{totalBill}}">{{totalBill}}</div>
+          </div>
+          <div class="summary-checkout">
+            <button class="checkout-cta"><input class="checkout-cta" type="submit" value="PlaceOrder"></button>
+          </div>
+        </div>
+      </aside>
+      {% load static%}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    <!-- ------------------cart end------------------- -->
+</form>
+{%endblock%}

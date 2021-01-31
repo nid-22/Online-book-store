@@ -1,0 +1,28 @@
+{%extends 'navbar.html'%}
+    {% block css%}
+    {% load static %}
+    <link  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{%block main%}
+<form method="POST">
+    {%csrf_token%}
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                {{form|crispy}}
+            </div>
+        </div>
+    </div>
+        
+        
+            <!-- <input type="submit">
+            <input type="reset"> -->
+            <button type="submit" class="btn btn-success">Save </button>
+       
+   
+</form>
+
+{%endblock%}

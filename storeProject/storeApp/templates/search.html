@@ -1,0 +1,83 @@
+{%extends 'navbar.html'%}
+
+{% block css%}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop-homepage.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <style>
+    .form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+.form-control::placeholder {
+  font-size: 1.6rem;
+  color: #aaa;
+  font-style: italic;
+}
+    </style>
+{% endblock %}
+
+{%block slider%}
+
+<form method="POST">
+    {%csrf_token%} 
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <input class="form-control"   name="srch">
+            </div>
+            <div class="col-4">
+                <input class="form-control"  type="submit" value="Search">
+            </div>
+        </div>
+    </div>       -->
+    
+        
+            <div class="col-lg-8 mx-auto ">
+                    <div class="bg-light rounded rounded-pill shadow-sm mb-4">
+                          <input type="search" placeholder="What're you searching for?" name="srch"  class="form-control border-0 bg-light">
+                    </div>
+            </div>
+            <div class="col-lg-4 mx-auto ">
+                <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+            </div>
+       
+   
+    
+    
+</form>
+{%endblock%}
+{%block main%} {%for i in boo%}
+
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <img src="{{i.img}}" alt="" width="250" height="150">
+        <div class="caption">
+            <h4 class="pull-right">{{i.price}}</h4>
+            <h4><a href="#">{{i.name}}</a>
+            </h4>
+            <p>{{i.description}}</p>
+        </div>
+        <div class="ratings">
+            <p class="pull-right">15 reviews</p>
+            <p>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+            </p>
+        </div>
+    </div>
+</div>
+{%endfor%} {%endblock%}
+
+

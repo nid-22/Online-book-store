@@ -1,0 +1,58 @@
+{% extends 'base.html'%} 
+
+{% block css%}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop-homepage.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<h2><a href="{% url 'storeApp:search' %}">Search for books</a></h2>
+
+<div class="col-md-3">
+    <p class="lead">genreName</p>
+    <div class="list-group">
+        {%for i in gen%}
+        <a href="{%url 'storeApp:get_by_genre' i.id %}" class="list-group-item">{{i.name}}</a> {%endfor%}
+    </div>
+</div>
+{%endblock%}
+
+
+{%block main%} {%for i in boo%}
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <img src="{{i.img}}" alt="" width="300" height="200">
+        <div class="caption">
+            <h4 class="pull-right">{{i.price}}</h4>
+            <h4><a href="#">{{i.name}}</a>
+            </h4> 
+            {% if user.is_authenticated %}
+                <button onclick="incrementValue()"><a href="{%url 'storeApp:addCart' i.id %}" >Add to cart</a></button>  
+            {% else %}
+                <button><a href="{%url 'storeApp:login'%}">Add to cart</a></button>
+            {% endif %}         
+            <p>{{i.description}}</p>
+        </div>
+        <div class="ratings">
+            <p class="pull-right">15 reviews</p>
+            <p>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+            </p>
+        </div>
+    </div>
+</div>
+{%endfor%}
+
+
+
+{%endblock%}
+
+
+{% include 'footer.html' %}

@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Homepage Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+   
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop-homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart-add.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link  href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block css%}
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'storeApp:home' %}">Booked.in</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#about">About</a>
+                    </li>
+                    <li><a href="#services">Store</a>
+                    </li>
+                    <li><a href="#contact">Contact</a>
+                    </li>
+                    {%if user.is_authenticated%}
+
+                    <li><a href="{%url 'storeApp:crlist'%}">Cart</a>
+                    </li>
+                    <li><a href="{%url 'storeApp:morder'%}">My Order</a>
+                    </li>
+                    <li><a href="#">FeedBack</a>
+                    </li>
+                    <li><a href="{%url 'storeApp:logout'%}">Logout</a>
+                    </li>
+                    {%else%}
+    
+                    <li><a href="{%url 'storeApp:register'%}">Register</a>
+                    </li>
+                    <li><a href="{%url 'storeApp:login'%}">Login</a>
+                    </li>
+    
+                    {%endif%}
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            {% block content%}
+                {% endblock %}
+
+            
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="{% static 'images/poster.jpg' %}" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    {% block main%}
+                      {% endblock %}
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <h4><a href="#">Best books 2020</a>
+                        </h4>
+                        <p>Check out our curated list on this years best picks</p>
+                        <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View </a>
+                    </div>
+
+                </div>
+                <div class="cd-cart__trigger">
+                    <a href="{%url 'storeApp:crlist'%}" class="cd-cart text-replace">
+                        <i class="fa fa-shopping-cart fa-3x"></i>                                             
+                    </a>                   
+               </div>
+               <div class="cd-cart__count ">
+                  <span  class="badge badge-warning">0{{item_numbers}}</span>                   
+               </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Company 2013 - Template by <a href="http://maxoffsky.com/">Maks</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- JavaScript -->
+    {% load static%}
+    <script type="text/javascript" src="{%  static 'js/jquery-1.10.2.js' %}"></script>
+    <script type="text/javascript" src="{%  static 'js/bootstrap.js' %}"></script>
+    <script  type="text/javascript" src="{% static 'js/cart-add.js'%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+
+</body>
+
+</html>
